@@ -58,8 +58,8 @@ class App extends Component {
         <div className="phonebook">
           <h1>Phonebook</h1>
           <ContactForm onAddContact={this.addContact} />
-          <Filter value={filter} onChange={this.onFilter} />
           <h2>Contacts</h2>
+          <Filter value={filter} onChange={this.onFilter} />
           <ContactsList
             contacts={visibleContacts}
             deleteContact={this.deleteContact}

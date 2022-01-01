@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import styles from './ContactForm.module.css';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 class ContactForm extends Component {
   state = {
@@ -27,8 +29,10 @@ class ContactForm extends Component {
       <form onSubmit={this.handleSubmit} className={styles.formcontacts}>
         <div className={styles.phonebookdata}>
           <label htmlFor="">
-            Name&emsp;
-            <input
+            <TextField
+              id="standard-basic"
+              label="Name"
+              size="small"
               onChange={this.handleChange}
               type="text"
               name="name"
@@ -41,8 +45,10 @@ class ContactForm extends Component {
         </div>
         <div className={styles.phonebookdata}>
           <label htmlFor="">
-            Phone&emsp;
-            <input
+            <TextField
+              id="standard-basic"
+              label="Phone"
+              size="small"
               onChange={this.handleChange}
               type="tel"
               name="number"
@@ -53,9 +59,9 @@ class ContactForm extends Component {
             />
           </label>
         </div>
-        <button type="submit" className={styles.button}>
+        <Button variant="text" type="submit">
           Add contact
-        </button>
+        </Button>
       </form>
     );
   }
