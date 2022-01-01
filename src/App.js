@@ -30,7 +30,6 @@ class App extends Component {
     if (nextContacts !== prevContacts) {
       localStorage.setItem('contacts', JSON.stringify(nextContacts));
     }
-    if (nextContacts.length > prevContacts.length && prevContacts.length !== 0);
   }
 
   addContact = data => {
