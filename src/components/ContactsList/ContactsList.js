@@ -1,16 +1,25 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import actions from '../../redux/phonebook-actions';
+import { getVisibleContacts } from '../../redux/phonebook-selector';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './ContactsList.module.css';
 
-const ContactsList = ({ contacts, deleteContact }) => {
+export default function ContactsList() {
+  const contacts = useSelector(getVisibleContacts);
+  const dispatch = useDispatch();
+  const onDeleteContact = id => {
+    dispatch(actions.deleteContact(id));
+  };
+
   return (
     <ul className={styles.contactlist}>
       {contacts.map(contact => {
         return (
           <li key={contact.id} className={styles.itemtext}>
             <div>
-              {contact.name} {contact.number}{' '}
+              {contact.name} {contact.number}
             </div>
             <div>
               <Button
@@ -19,7 +28,7 @@ const ContactsList = ({ contacts, deleteContact }) => {
                 size="small"
                 type="button"
                 startIcon={<DeleteIcon />}
-                onClick={() => deleteContact(contact.id)}
+                onClick={() => onDeleteContact(contact.id)}
               >
                 Delete
               </Button>
@@ -29,5 +38,4 @@ const ContactsList = ({ contacts, deleteContact }) => {
       })}
     </ul>
   );
-};
-export default ContactsList;
+}

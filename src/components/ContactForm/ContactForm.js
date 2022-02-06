@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import actions from '../../redux/phonebook-actions';
+import { getContacts } from '../../redux/phonebook-selector';
 import styles from './ContactForm.module.css';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
-export default function ContactForm({ onAddContact }) {
+export default function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+  const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -26,8 +32,14 @@ export default function ContactForm({ onAddContact }) {
 
   const handleSubmit = event => {
     event.preventDefault();
+    if (name === '' && number === '') {
+      alert('Заполните все поля контакта');
+      return;
+    }
 
-    onAddContact({ name, number });
+    contacts.find(contact => name.toLowerCase() === contact.name.toLowerCase())
+      ? alert(`${name} is already in contacts`)
+      : dispatch(actions.addContact({ name, number }));
     reset();
   };
 
