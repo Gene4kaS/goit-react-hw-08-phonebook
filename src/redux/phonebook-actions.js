@@ -10,7 +10,7 @@ const addContact = createAction('phonebook/addContact', ({ name, number }) => ({
 }));
 
 const deleteContact = createAction('phonebook/deleteContact');
-const onFilter = createAction('phonebook/onFilter');
+const onFilter = createAction('phonebook/filterChange');
 
 const actions = { addContact, deleteContact, onFilter };
 

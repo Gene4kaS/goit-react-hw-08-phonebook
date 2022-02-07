@@ -18,7 +18,7 @@ export default function Filter() {
         inputProps={ariaLabel}
         type="text"
         value={value}
-        onChange={e => dispatch(actions.filterChange(e.target.value))}
+        onChange={e => dispatch(actions.onFilter(e.target.value))}
       />
     </label>
   );

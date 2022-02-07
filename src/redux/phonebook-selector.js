@@ -2,11 +2,11 @@ export const getContacts = state => state.contacts.items;
 export const getFilter = state => state.contacts.filter;
 
 export const getVisibleContacts = state => {
-  const contacts = getContacts(state);
+  const items = getContacts(state);
   const filter = getFilter(state);
-  const normalizedFilter = filter.toLowerCase();
+  const normilizedFilter = filter.toLowerCase();
 
-  return contacts.filter(({ text }) =>
-    text.toLowerCase().includes(normalizedFilter),
+  return items.filter(({ name }) =>
+    name.toLowerCase().includes(normilizedFilter),
   );
 };

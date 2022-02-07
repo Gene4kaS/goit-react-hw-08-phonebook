@@ -32,11 +32,11 @@ export default function ContactForm() {
 
   const handleSubmit = event => {
     event.preventDefault();
+
     if (name === '' && number === '') {
       alert('Заполните все поля контакта');
       return;
     }
-
     contacts.find(contact => name.toLowerCase() === contact.name.toLowerCase())
       ? alert(`${name} is already in contacts`)
       : dispatch(actions.addContact({ name, number }));

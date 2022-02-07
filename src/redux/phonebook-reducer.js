@@ -12,4 +12,7 @@ const filter = createReducer('', {
   [actions.onFilter]: (_, { payload }) => payload,
 });
 
-export default combineReducers({ items, filter });
+export default combineReducers({
+  items,
+  filter,
+});
