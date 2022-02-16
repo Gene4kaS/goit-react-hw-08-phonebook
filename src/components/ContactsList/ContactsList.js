@@ -1,53 +1,22 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-import { useSelector, useDispatch } from 'react-redux';
-import actions from '../../redux/phonebook-actions';
-import { getVisibleContacts } from '../../redux/phonebook-selector';
-import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { useSelector } from 'react-redux';
+import ContactsListItem from '../ContactsListItem/ContactsListItem';
 import styles from './ContactsList.module.css';
+import { getFilter } from '../../redux/phonebook-selector';
+import contactsFilter from '../../utils/contactFilter';
+import { useFetchContactsQuery } from '../../redux/contactsSlice';
 
-export default function ContactsList() {
-  const contacts = useSelector(getVisibleContacts);
-  const dispatch = useDispatch();
-
-  const onDeleteContact = id => {
-    dispatch(actions.deleteContact(id));
-  };
+export default function ContactsList({ contacts }) {
+  const filter = useSelector(getFilter);
+  const { data } = useFetchContactsQuery();
 
   return (
-    <ul className={styles.contactlist}>
-      {contacts.map(contact => {
-        return (
-          <li key={contact.id} className={styles.itemtext}>
-            <div>
-              {contact.name} {contact.number}
-            </div>
-            <div>
-              <Button
-                className={styles.button}
-                variant="outlined"
-                size="small"
-                type="button"
-                startIcon={<DeleteIcon />}
-                onClick={() => onDeleteContact(contact.id)}
-              >
-                Delete
-              </Button>
-            </div>
-          </li>
-        );
-      })}
+    <ul className={styles.list}>
+      {data &&
+        contactsFilter(data, filter).map(({ name, number, id }) => (
+          <ContactsListItem key={id} name={name} number={number} id={id} />
+        ))}
+      ;
     </ul>
   );
 }
-
-// ContactsList.propTypes = {
-//   contacts: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.string,
-//       name: PropTypes.string,
-//       number: PropTypes.string,
-//     }),
-//   ),
-// };

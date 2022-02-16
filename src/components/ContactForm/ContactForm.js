@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import actions from '../../redux/phonebook-actions';
-import { getContacts } from '../../redux/phonebook-selector';
+import { toast } from 'react-hot-toast';
+import { nanoid } from 'nanoid';
 import styles from './ContactForm.module.css';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import {
+  useFetchContactsQuery,
+  useCreateContactMutation,
+} from '../../redux/contactsSlice';
 
 export default function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const contacts = useSelector(getContacts);
-  const dispatch = useDispatch();
+  const { data } = useFetchContactsQuery();
+  const [createContact] = useCreateContactMutation();
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -30,22 +33,32 @@ export default function ContactForm() {
     }
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-
-    if (name === '' && number === '') {
-      alert('Заполните все поля контакта');
-      return;
-    }
-    contacts.find(contact => name.toLowerCase() === contact.name.toLowerCase())
-      ? alert(`${name} is already in contacts`)
-      : dispatch(actions.addContact({ name, number }));
-    reset();
-  };
-
   const reset = () => {
     setName('');
     setNumber('');
+  };
+
+  const isInContacts = contact => {
+    const normalizedName = contact.name.toLowerCase();
+    const allNames = data.map(el => el.name.toLowerCase());
+    const existingContact = allNames.find(name => name === normalizedName);
+    return existingContact;
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const contact = {
+      id: nanoid(),
+      name: name,
+      number: number,
+    };
+    if (!isInContacts(contact)) {
+      createContact(contact);
+      toast.success('Number added to the contacts');
+    } else {
+      return toast.error(`Sorry, ${name} is already in contacts`);
+    }
+    reset();
   };
 
   return (
