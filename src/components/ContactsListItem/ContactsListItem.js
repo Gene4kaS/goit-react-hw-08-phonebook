@@ -3,9 +3,10 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './ContactsListItem.module.css';
 import { useDeleteContactMutation } from '../../redux/contactsSlice';
+import { Spinner } from '../Spinner/Spinner';
 
 export default function ContactsListItem({ name, number, id }) {
-  const [deleteContact] = useDeleteContactMutation();
+  const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
   return (
     <li className={styles.itemtext}>
       <div>
@@ -19,7 +20,9 @@ export default function ContactsListItem({ name, number, id }) {
           type="button"
           startIcon={<DeleteIcon />}
           onClick={() => deleteContact(id)}
+          disabled={isDeleting}
         >
+          {isDeleting && <Spinner size={12} />}
           Delete
         </Button>
       </div>
