@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Routes, Route } from 'react-router-dom';
 
 import { PrivateRoute } from './components/PrivateRoute';
 import { PublicRoute } from './components/PublicRoute';
@@ -37,21 +38,40 @@ export default function App() {
       <AppBar />
 
       <Suspense fallback={<Spinner />}>
-        <PublicRoute path="/" exact>
-          <HomeView />
-        </PublicRoute>
-
-        <PublicRoute path="/register" restricted redirectTo="/contacts">
-          <RegisterView />
-        </PublicRoute>
-
-        <PublicRoute path="/login" restricted redirectTo="/contacts">
-          <LoginView />
-        </PublicRoute>
-
-        <PrivateRoute path="/contacts" redirectTo="/login">
-          <ContactsView />
-        </PrivateRoute>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <PublicRoute path="/">
+                <HomeView />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="register"
+            element={
+              <PublicRoute path="/register" restricted redirectTo="/contacts">
+                <RegisterView />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <PublicRoute path="/login" restricted redirectTo="/contacts">
+                <LoginView />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="contacts"
+            element={
+              <PrivateRoute path="/contacts" redirectTo="/login">
+                <ContactsView />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
       </Suspense>
 
       <ToastContainer autoClose={3700} position="top-center" />
