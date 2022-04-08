@@ -35,42 +35,42 @@ export default function App() {
 
   return (
     <div>
-      <AppBar />
-
       <Suspense fallback={<Spinner />}>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <PublicRoute path="/">
-                <HomeView />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="register"
-            element={
-              <PublicRoute path="/register" restricted redirectTo="/contacts">
-                <RegisterView />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="login"
-            element={
-              <PublicRoute path="/login" restricted redirectTo="/contacts">
-                <LoginView />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="contacts"
-            element={
-              <PrivateRoute path="/contacts" redirectTo="/login">
-                <ContactsView />
-              </PrivateRoute>
-            }
-          />
+          <Route path="/" element={<AppBar />}>
+            <Route
+              path="/"
+              element={
+                <PublicRoute path="/">
+                  <HomeView />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="register"
+              element={
+                <PublicRoute path="/register">
+                  <RegisterView />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="login"
+              element={
+                <PublicRoute path="/login">
+                  <LoginView />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="contacts"
+              element={
+                <PrivateRoute path="/contacts">
+                  <ContactsView />
+                </PrivateRoute>
+              }
+            />
+          </Route>
         </Routes>
       </Suspense>
 
