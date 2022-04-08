@@ -38,14 +38,7 @@ export default function App() {
       <Suspense fallback={<Spinner />}>
         <Routes>
           <Route path="/" element={<AppBar />}>
-            <Route
-              path="/"
-              element={
-                <PublicRoute path="/">
-                  <HomeView />
-                </PublicRoute>
-              }
-            />
+            <Route path="/" element={<HomeView />} />
             <Route
               path="register"
               element={
