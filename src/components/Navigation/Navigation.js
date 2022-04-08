@@ -9,7 +9,12 @@ function Navigation() {
 
   return (
     <nav className={s.nav}>
-      <NavLink to="/" exact className={s.link} activeClassName={s.activeLink}>
+      <NavLink
+        to="/"
+        className={s.link}
+        activeStyle={{ color: 'red' }}
+        style={({ isActive }) => ({ color: isActive ? 'red' : 'white' })}
+      >
         Home
       </NavLink>
 
@@ -18,7 +23,8 @@ function Navigation() {
           to="/contacts"
           exact
           className={s.link}
-          activeClassName={s.activeLink}
+          activeStyle={{ color: 'red' }}
+          style={({ isActive }) => ({ color: isActive ? 'red' : 'white' })}
         >
           Contacts
         </NavLink>
