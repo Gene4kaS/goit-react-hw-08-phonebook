@@ -6,11 +6,6 @@
   color: #212121;
 }
 
-.activeLink {
-  composes: link;
-  color: #f50057;
-}
-
 .link:not(:last-child) {
   margin-right: 30px;
 }

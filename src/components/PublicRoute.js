@@ -9,5 +9,5 @@ export const PublicRoute = ({
 }) => {
   const isLoggedIn = useSelector(authSelectors.getIsAuthenticated);
 
-  return restricted && isLoggedIn ? <Navigate to="/" /> : children;
+  return !restricted && isLoggedIn ? <Navigate to="/" /> : children;
 };

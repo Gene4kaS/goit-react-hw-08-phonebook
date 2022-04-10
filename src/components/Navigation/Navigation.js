@@ -10,18 +10,22 @@ function Navigation() {
     <nav>
       <NavLink
         to="/"
-        exact="true"
         className={s.link}
-        activeclassname={s.activeLink}
+        activeStyle={{ color: 'red' }}
+        style={({ isActive }) => ({
+          color: isActive ? '#f50057' : '#212121',
+        })}
       >
         Home
       </NavLink>
       {isLoggedIn && (
         <NavLink
           to="/contacts"
-          exact="true"
           className={s.link}
-          activeclassname={s.activeLink}
+          activeStyle={{ color: 'red' }}
+          style={({ isActive }) => ({
+            color: isActive ? '#f50057' : '#212121',
+          })}
         >
           Contacts
         </NavLink>

@@ -6,17 +6,21 @@ const AuthNav = () => (
   <div>
     <NavLink
       to="/register"
-      exact="true"
       className={s.link}
-      activeclassname={s.activeLink}
+      activeStyle={{ color: 'red' }}
+      style={({ isActive }) => ({
+        color: isActive ? '#f50057' : '#212121',
+      })}
     >
       Sign up
     </NavLink>
     <NavLink
       to="/login"
-      exact="true"
       className={s.link}
-      activeclassname={s.activeLink}
+      activeStyle={{ color: 'red' }}
+      style={({ isActive }) => ({
+        color: isActive ? '#f50057' : '#212121',
+      })}
     >
       Log in
     </NavLink>
