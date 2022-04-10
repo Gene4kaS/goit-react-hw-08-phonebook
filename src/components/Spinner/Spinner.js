@@ -1,20 +1,13 @@
-import styled from '@emotion/styled/macro';
-import { keyframes } from '@emotion/react';
-import { CgSpinner } from 'react-icons/cg';
+import { BallTriangle } from 'react-loader-spinner';
+import 'react-loader-spinner/dist/react-loader-spinner.cjs.development';
+import s from './Spinner.module.css';
 
-const spin = keyframes`
-0% {
-  transform: rotate(0deg);
+function Spinner() {
+  return (
+    <div className={s.overlay}>
+      <BallTriangle type="ThreeDots" color="#f50057" height="35" />
+    </div>
+  );
 }
-100% {
-  transform: rotate(1turn);
-}
-`;
 
-export const Spinner = styled(CgSpinner)`
-  animation: ${spin} 0.85s linear infinite;
-`;
-
-Spinner.defaultProps = {
-  size: 40,
-};
+export default Spinner;
