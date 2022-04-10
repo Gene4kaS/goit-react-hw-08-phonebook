@@ -26,7 +26,6 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     [contactApi.reducerPath]: contactApi.reducer,
     filter,
-    // contacts: contactsReducer,
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
