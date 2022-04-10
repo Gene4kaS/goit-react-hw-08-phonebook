@@ -8,7 +8,7 @@ import { PrivateRoute } from './components/PrivateRoute';
 import { PublicRoute } from './components/PublicRoute';
 
 import AppBar from './components/AppBar';
-// import Spinner from './components/Spinner';
+import Spinner from './components/Spinner';
 
 import { authOperations } from './redux/auth';
 
@@ -27,34 +27,33 @@ export default function App() {
   return (
     <div>
       <AppBar />
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<Spinner />}>
         <Routes>
-          <Route path="/" element={<HomeView />}>
-            <Route
-              path="register"
-              element={
-                <PublicRoute rectricted>
-                  <RegisterView />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="login"
-              element={
-                <PublicRoute rectricted>
-                  <LoginView />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="contacts"
-              element={
-                <PrivateRoute path="/contacts">
-                  <ContactsView />
-                </PrivateRoute>
-              }
-            />
-          </Route>
+          <Route path="/" element={<HomeView />} />
+          <Route
+            path="register"
+            element={
+              <PublicRoute rectricted>
+                <RegisterView />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <PublicRoute rectricted>
+                <LoginView />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="contacts"
+            element={
+              <PrivateRoute>
+                <ContactsView />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </Suspense>
 
