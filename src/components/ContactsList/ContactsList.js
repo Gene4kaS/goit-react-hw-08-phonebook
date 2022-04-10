@@ -16,7 +16,6 @@ export default function ContactsList({ contacts }) {
         contactsFilter(data, filter).map(({ name, number, id }) => (
           <ContactsListItem key={id} name={name} number={number} id={id} />
         ))}
-      ;
     </ul>
   );
 }
