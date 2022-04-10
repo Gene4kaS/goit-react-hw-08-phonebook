@@ -5,12 +5,12 @@ import ContactForm from '../../components/ContactForm';
 import ContactsList from '../../components/ContactsList';
 import Filter from '../../components/Filter';
 import { ToastContainer } from 'react-toastify';
-import { contactsOperations } from '../../redux/contacts';
+// import { contactsOperations } from '../../redux/contacts';
 
 export default function ContactsView() {
-  const dispatch = useDispatch();
+  //   const dispatch = useDispatch();
 
-  useEffect(() => dispatch(contactsOperations.fetchContacts()), [dispatch]);
+  //   useEffect(() => dispatch(contactsOperations.fetchContacts()), [dispatch]);
 
   return (
     <>

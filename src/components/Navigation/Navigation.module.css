@@ -3,6 +3,12 @@
   padding: 20px 0;
   font-weight: 700;
   font-size: 20px;
+  color: #212121;
+}
+
+.activeLink {
+  composes: link;
+  color: #f50057;
 }
 
 .link:not(:last-child) {

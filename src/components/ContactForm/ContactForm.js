@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import {
   useFetchContactsQuery,
   useCreateContactMutation,
-} from '../../redux/contactsSlice';
+} from '../../redux/contacts/contactsSlice';
 
 export default function ContactForm() {
   const [name, setName] = useState('');

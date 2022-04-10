@@ -8,23 +8,14 @@ import { PrivateRoute } from './components/PrivateRoute';
 import { PublicRoute } from './components/PublicRoute';
 
 import AppBar from './components/AppBar';
-import Spinner from './components/Spinner';
+// import Spinner from './components/Spinner';
 
 import { authOperations } from './redux/auth';
 
-const HomeView = lazy(() =>
-  import('./views/HomeView' /* webpackChunkName: "home-view" */),
-);
-
-const RegisterView = lazy(() =>
-  import('./views/RegisterView' /* webpackChunkName: "register-view" */),
-);
-const LoginView = lazy(() =>
-  import('./views/LoginView' /* webpackChunkName: "login-view" */),
-);
-const ContactsView = lazy(() =>
-  import('./views/ContactsView' /* webpackChunkName: "contacts-view" */),
-);
+const HomeView = lazy(() => import('./views/HomeView'));
+const RegisterView = lazy(() => import('./views/RegisterView'));
+const LoginView = lazy(() => import('./views/LoginView'));
+const ContactsView = lazy(() => import('./views/ContactsView'));
 
 export default function App() {
   const dispatch = useDispatch();
@@ -35,14 +26,14 @@ export default function App() {
 
   return (
     <div>
-      <Suspense fallback={<Spinner />}>
+      <AppBar />
+      <Suspense fallback={<p>Loading...</p>}>
         <Routes>
-          <Route path="/" element={<AppBar />}>
-            <Route path="/" element={<HomeView />} />
+          <Route path="/" element={<HomeView />}>
             <Route
               path="register"
               element={
-                <PublicRoute path="/register">
+                <PublicRoute rectricted>
                   <RegisterView />
                 </PublicRoute>
               }
@@ -50,7 +41,7 @@ export default function App() {
             <Route
               path="login"
               element={
-                <PublicRoute path="/login">
+                <PublicRoute rectricted>
                   <LoginView />
                 </PublicRoute>
               }

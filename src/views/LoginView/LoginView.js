@@ -4,7 +4,7 @@ import { authOperations, authSelectors } from '../../redux/auth';
 import { toast } from 'react-toastify';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Spinner from '../../components/Spinner';
+// import Spinner from '../../components/Spinner';
 
 import s from './LoginView.module.css';
 
@@ -76,7 +76,7 @@ export default function LoginView() {
         </Button>
       )}
 
-      {isLoading && <Spinner />}
+      {isLoading && <p>Loading...</p>}
     </form>
   );
 }

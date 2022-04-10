@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getFilter } from '../../redux/phonebook-selector';
-import { filterContacts } from '../../redux/filter-reducer';
+import { getFilter } from '../../redux/contacts/phonebook-selector';
+import { filterContacts } from '../../redux/contacts/filter-reducer';
 import Input from '@mui/material/Input';
 import styles from './Filter.module.css';
 
